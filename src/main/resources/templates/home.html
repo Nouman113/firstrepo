@@ -1,0 +1,190 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns:th="http://www.thymleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+body
+{
+	font:15px/1.5 Arial,Helvetica,sans-serif;
+	padding:0;
+	margin:0;
+	background-color:#f4f4f4;
+}
+
+
+.li
+{
+  float:right;
+   display: flex;
+   flex-direction: row;
+   /* Below sets up your display method: flex-start|flex-end|space-between|space-around */
+   justify-content: flex-start; 
+   /* Below removes bullets and cleans white-space */
+   list-style: none;
+   padding: 0;
+   /* Bonus: forces no word-wrap */
+   white-space: nowrap;
+ 
+}
+li{
+ padding-top: 10px;
+   padding-bottom: 10px;
+   padding-left: 10px;
+   padding-right: 101px;
+   
+
+}
+header{
+
+	background:#0a2d71;
+	color:#ffffff;
+	padding-top:30px;
+	min-height:70px;
+	border-bottom:#e8491d 3px solid;
+
+
+}
+header a{
+	color:#ffffff;
+	text-decoration:none;
+	text-transform:uppercase;
+	font-size:16px;
+
+
+
+}
+header #branding
+{
+	float:left;
+
+}
+header #branding hi{margin:0;}
+header nav{
+
+float:right;
+}
+
+header .highlight, header .current a
+{
+	color:#e8491d;
+	font-weight:bold;
+
+}
+
+header a:hover
+{
+	color:#cccccc;
+	font-weight:bold;
+}
+
+.list
+{
+   
+	
+
+}
+.container
+{
+	width:80%;
+	margin:auto;
+	overflow:hidden;
+
+
+}	
+
+
+.main
+{
+background-color: #f2e775;
+
+color: #0a2e71;
+margin-left:450px;
+
+
+width:200px;
+
+margin-top:10px;
+
+}
+
+
+</style>
+</head>
+<body>
+<header>
+
+<div class="container">
+<div id="branding">
+
+<h2><span class="highlight">File </span>Management Software</h2>
+</div>
+
+
+<nav>
+
+<ul class="li" >
+<li ><a th:href="userhome">Home</a></li>
+<li><a th:href="userfiles">Files</a></li>
+<li><a th:href="sharedfiles">Shared Files</a></li>
+</ul>
+</nav>
+</div>
+</header>
+
+<br><br><br><br><br><br><br>
+
+
+
+
+
+
+
+
+<div class="main">
+
+<form th:action="@{/addAlien}" >
+<h2 class="h2-sign">Sign Up </h2>
+<div class="id">
+<h3>Enter Id </h3><input type="text" name= aid>
+
+</div>
+<br>
+<div class="name">
+<h3>Enter Name</h3><input type="text"  name= aname><br>
+</div>
+<div class="password">
+
+<h3>Enter Password</h3><input type="text"  name=password><br>
+</div>
+<input type="submit" value="Submit"><br>
+
+
+
+
+</form>
+
+<form th:action="@{/login}">
+<h2> Log In</h2>
+
+
+<h3>Enter Name</h3><input type="text"  name= aname width="80px"><br>
+<h3>Enter Password</h3><input type="text"  name=password><br>
+<input type="submit" value="Submit"><br>
+
+
+</form>
+
+
+</div>
+
+
+<form th:action="getAlien">
+<input type="text"name= aid ><br>
+<input type="submit"><br>
+
+</form>
+
+</body>
+</html>
