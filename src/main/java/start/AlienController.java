@@ -69,7 +69,7 @@ public class AlienController {
 		      List<FileInfo> listfiles =obj.getFiles();
 		      for (FileInfo fle:listfiles)
 		      {
-		    	 
+		    	  System.out.println(fle.getFilename());
 		      }
 		      model.addAttribute("file", listfiles);
 		      
