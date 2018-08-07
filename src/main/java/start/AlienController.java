@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
@@ -31,7 +32,9 @@ public class AlienController {
 
 	@Autowired
 	FileStorageImpl fileStorage;
-
+	List<FileInfo> list = new ArrayList<>();
+	List<FileInfo> savedFiles;
+	List<FileInfo> fileToReturnOnFe;
 	@Autowired
 	AlienRepo repo;
 
@@ -58,11 +61,20 @@ public class AlienController {
 	}
 
 	@RequestMapping("/login")
-	public String login(@RequestParam String aname, @RequestParam String password) {
+	public String login(@RequestParam String aname, @RequestParam String password,Model model) {
 
 		if (repo.existsByAnameAndPassword(aname, password) == true) {
 			Alien obj = repo.findByAnameAndPassword(aname, password);
 			userLogedInID = obj.getAid();
+		      List<FileInfo> listfiles =obj.getFiles();
+		      for (FileInfo fle:listfiles)
+		      {
+		    	 
+		      }
+		      model.addAttribute("file", listfiles);
+		      
+		      
+			
 			return "userhome";
 		} else {
 			return "message";
@@ -70,7 +82,28 @@ public class AlienController {
 
 	}
 
-	@RequestMapping("/getAlien")
+	@RequestMapping("/addfilestouser")
+	public String filesToOtherUser(@RequestParam String aname ,@RequestParam int aid,@RequestParam String filename,Model model)
+	{
+		
+		FileInfo fi=filerepo.findByFilename(filename);
+		
+		
+		if(repo.existsByAidAndAname(aid, aname))
+		{
+		Alien a= repo.findByAid(aid);
+		fi.setAlien(a);
+		filerepo.save(fi);
+		
+		model.addAttribute("msg", "Successfully Shared With Desired User");	
+		
+		}
+		
+         return "message1"; 
+		
+		}
+
+	/*@RequestMapping("/getAlien")
 	public ModelAndView getAlien(@RequestParam int aid) {
 		ModelAndView mv = new ModelAndView("showAlien");
 
@@ -79,7 +112,7 @@ public class AlienController {
 		mv.addObject(alien);
 		return mv;
 
-	}
+	}*/
 
 	@RequestMapping("/showAlien")
 	public String userHome() {
@@ -116,7 +149,7 @@ public class AlienController {
 			saveObj.setAlien(myobj);
 			filerepo.save(saveObj);
 
-			List<FileInfo> list = new ArrayList<>();
+			
 			list.add(saveObj);
 			myobj.setFiles(list);
 
@@ -141,17 +174,17 @@ public class AlienController {
 		model.addAttribute("msg", "SuccessFully uploaded Files" + filenames.toString());
 
 		Alien user = repo.findByAid(userLogedInID);
-		List<FileInfo> savedFiles = user.getFiles();
-		List<FileInfo> fileToReturnOnFe = new ArrayList<>();
+		savedFiles = user.getFiles();
+		 fileToReturnOnFe = new ArrayList<>();
 		for (FileInfo fileInfo : fileInfos) {
 			for (FileInfo savedfile : savedFiles) {
 			    fileToReturnOnFe.add(fileInfo);
 				if(fileInfo.getFilename().equals(savedfile.getFilename()))
 						{
-					   
-					      
+					
+					fileToReturnOnFe.add(fileInfo);						      
 						}
-					//fileToReturnOnFe.add(fileInfo);
+			
 			}
 		}
 
@@ -204,6 +237,15 @@ public class AlienController {
 	 * }
 	 * 
 	 */
+	
+	//@RequestMApping("/filesharedwithuser")
+//	public String fileSharedWithUser()
+	
+	
+	
+	
+	
+	
 @RequestMapping("/backtohome")
 public String back()
 {

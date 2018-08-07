@@ -25,7 +25,7 @@ public class Alien {
 	private String password;
 
 	@OneToMany
-	@JoinColumn(name = "user_id")
+	//@JoinColumn(name = "user_id")
 	private List<FileInfo> files = new ArrayList<>();
 
 	

@@ -100,13 +100,75 @@ header a:hover
 background-color: #f2e775;
 
 color: #0a2e71;
-margin-left:450px;
+margin-left:650px;
 
 
-width:200px;
+width:500px;
 
 margin-top:10px;
+padding-bottom:10px;
+padding-top:10px;
+padding-right:10px;
+padding-left:10px;
 
+}
+.h2-sign
+{
+padding-left: 175px;
+font-size:40px;
+}
+h3
+{
+
+}
+.h3-name
+{
+padding-left:140px;
+font-size:30px;
+}
+.h3-password
+{
+padding-left:145px;
+font-size:30px;
+}
+.first-input
+{
+width:98.5%;
+}
+input
+{
+width:98.5%;
+height:35px;
+font-size:25px;
+}
+.submit1
+{
+width:100%;
+color:red;
+
+
+	
+
+}
+.h2-sign
+{
+padding-left: 175px;
+font-size:40px;
+}
+.h3-login
+{
+padding-left:140px;
+font-size:30px;
+}
+.h3-login1
+{
+padding-left:140px;
+font-size:30px;
+}
+.h2-login
+{
+padding-left: 175px;
+font-size:40px;
 }
 
 
@@ -125,7 +187,7 @@ margin-top:10px;
 <nav>
 
 <ul class="li" >
-<li ><a th:href="userhome">Home</a></li>
+<li ><a th:href="home">Home</a></li>
 <li><a th:href="userfiles">Files</a></li>
 <li><a th:href="sharedfiles">Shared Files</a></li>
 </ul>
@@ -133,7 +195,7 @@ margin-top:10px;
 </div>
 </header>
 
-<br><br><br><br><br><br><br>
+<br><br>
 
 
 
@@ -146,19 +208,14 @@ margin-top:10px;
 
 <form th:action="@{/addAlien}" >
 <h2 class="h2-sign">Sign Up </h2>
-<div class="id">
-<h3>Enter Id </h3><input type="text" name= aid>
 
-</div>
-<br>
-<div class="name">
-<h3>Enter Name</h3><input type="text"  name= aname><br>
-</div>
-<div class="password">
 
-<h3>Enter Password</h3><input type="text"  name=password><br>
-</div>
-<input type="submit" value="Submit"><br>
+<h3 class="h3-name">Enter Username</h3><input class="first-input" type="text"  name= aname><br>
+
+
+<h3 class="h3-password">Enter Password</h3><input type="text"  name=password><br>
+
+<input class="submit1"type="submit" value="Submit"><br>
 
 
 
@@ -166,12 +223,12 @@ margin-top:10px;
 </form>
 
 <form th:action="@{/login}">
-<h2> Log In</h2>
+<h2 class="h2-login"> Log In</h2>
 
 
-<h3>Enter Name</h3><input type="text"  name= aname width="80px"><br>
-<h3>Enter Password</h3><input type="text"  name=password><br>
-<input type="submit" value="Submit"><br>
+<h3 class="h3-login">Enter Username</h3><input type="text"  name= aname  ><br>
+<h3   class="h3-login1">Enter Password</h3><input type="text"  name=password><br>
+<input class="submit1" type="submit" value="Submit"><br>
 
 
 </form>
@@ -180,11 +237,7 @@ margin-top:10px;
 </div>
 
 
-<form th:action="getAlien">
-<input type="text"name= aid ><br>
-<input type="submit"><br>
 
-</form>
 
 </body>
 </html>
