@@ -48,6 +48,7 @@ public class FileStorageImpl {
 	
     public void deleteAll() {
         FileSystemUtils.deleteRecursively(rootLocation.toFile());
+   
     }
 
 	

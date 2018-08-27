@@ -67,12 +67,13 @@ public class AlienController {
 			Alien obj = repo.findByAnameAndPassword(aname, password);
 			userLogedInID = obj.getAid();
 		      List<FileInfo> listfiles =obj.getFiles();
-		      for (FileInfo fle:listfiles)
-		      {
-		    	  System.out.println(fle.getFilename());
-		      }
-		      model.addAttribute("file", listfiles);
-		      
+		    //  for (FileInfo fle:listfiles)
+		     // {
+		    //	  System.out.println(fle.getFilename());
+		    	 
+		    //  }
+		     
+		      model.addAttribute("file",listfiles);
 		      
 			
 			return "userhome";
