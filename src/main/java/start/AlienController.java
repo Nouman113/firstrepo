@@ -19,6 +19,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -35,6 +36,7 @@ public class AlienController {
 	List<FileInfo> list = new ArrayList<>();
 	List<FileInfo> savedFiles;
 	List<FileInfo> fileToReturnOnFe;
+	List<FileInfo> listfiles;
 	@Autowired
 	AlienRepo repo;
 
@@ -49,24 +51,25 @@ public class AlienController {
 	}
 
 	@RequestMapping("/addAlien")
-	public String addAlien(Alien alien)
+	public String addAlien(Alien alien,Model model)
 
 	{
 		repo.save(alien);
 
 		Alien obj = repo.findByAnameAndPassword(alien.getAname(), alien.getPassword());
 		userLogedInID = obj.getAid();
-		return "userhome";
+		  model.addAttribute("file",listfiles);
+		return "loginpage";
 
 	}
 
-	@RequestMapping("/login")
+	@RequestMapping(path = "/login", method = RequestMethod.POST)
 	public String login(@RequestParam String aname, @RequestParam String password,Model model) {
 
 		if (repo.existsByAnameAndPassword(aname, password) == true) {
 			Alien obj = repo.findByAnameAndPassword(aname, password);
 			userLogedInID = obj.getAid();
-		      List<FileInfo> listfiles =obj.getFiles();
+		            listfiles =obj.getFiles();
 		    //  for (FileInfo fle:listfiles)
 		     // {
 		    //	  System.out.println(fle.getFilename());
@@ -131,7 +134,7 @@ public class AlienController {
 	 * @RequestMapping("/") public String upload(Model model) { return "uploadpage";
 	 * }
 	 */
-	@RequestMapping("/upload")
+	@RequestMapping(path="/upload",method=RequestMethod.POST)
 	public String upload(Model model, @RequestParam("files") MultipartFile[] files) {
 		StringBuilder filenames = new StringBuilder();
 
@@ -177,21 +180,21 @@ public class AlienController {
 		Alien user = repo.findByAid(userLogedInID);
 		savedFiles = user.getFiles();
 		 fileToReturnOnFe = new ArrayList<>();
-		for (FileInfo fileInfo : fileInfos) {
+		//for (FileInfo fileInfo : fileInfos) {
 			for (FileInfo savedfile : savedFiles) {
-			    fileToReturnOnFe.add(fileInfo);
-				if(fileInfo.getFilename().equals(savedfile.getFilename()))
-						{
+			    fileToReturnOnFe.add(savedfile);
+				//if(fileInfo.getFilename().equals(savedfile.getFilename()))
+					//	{
 					
-					fileToReturnOnFe.add(fileInfo);						      
-						}
+					//fileToReturnOnFe.add(fileInfo);						      
+						//}
 			
-			}
+			//}
 		}
 
-		model.addAttribute("files", fileToReturnOnFe);
+		model.addAttribute("message", "Successfully Uploaded Your Files");
 
-		return "userfiles";
+		return "userhome";
 
 	}
 

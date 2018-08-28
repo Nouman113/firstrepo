@@ -3,7 +3,14 @@
 <html xmlns:th="http://www.thymleaf.org">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+ <meta charset="utf-8" />
 <title>User Home</title>
+   
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
 <style type="text/css">
 body
@@ -171,6 +178,11 @@ font-size:30px;
 padding-left: 175px;
 font-size:40px;
 }
+.a1
+{
+color: #da3030		;
+font-size:50px;
+}
 
 
 </style>
@@ -207,7 +219,7 @@ font-size:40px;
 
 <h1> You are Logged in</h1>
 
-
+<a th:text="${message}" class="a1"  ></a>
 <form action="/upload" method="post" enctype="multipart/form-data">
 <input type="file" name="files" multiple/>
 <input type="submit" value="Upload Files"/>
@@ -216,7 +228,7 @@ font-size:40px;
 	<div class="container h-100">
 		<div class="row h-100 justify-content-center align-items-center">
 			<div class="col-md-7 table-responsive">
-				<h2>Uploaded Files</h2>
+				<h2>Your Uploaded Files</h2>
 				<table id="customerTable" class="table">
 					<thead>
 						<tr>
@@ -233,9 +245,7 @@ font-size:40px;
 					    </tr>
 					</tbody>
 				</table>
-				<div>
-					<a href="/backtohome" class="btn btn-dark btn-block" role="button">Back to Upload Form</a>
-				</div>
+				
 			</div>
 		</div>
 	</div>

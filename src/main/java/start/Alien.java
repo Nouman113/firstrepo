@@ -9,9 +9,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.data.jpa.domain.AbstractPersistable;
+
 @Entity
+@Table(name="Alien")
 public class Alien {
 
 	@GeneratedValue
@@ -25,7 +29,6 @@ public class Alien {
 	private String password;
 
 	@OneToMany
-	//@JoinColumn(name = "user_id")
 	private List<FileInfo> files = new ArrayList<>();
 
 	

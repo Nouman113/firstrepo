@@ -1,9 +1,8 @@
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html xmlns:th="http://www.thymleaf.org">
+<!DOCTYPE html>
+<html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<meta charset="UTF-8">
+<title>Login Page</title>
 <style type="text/css">
 body
 {
@@ -97,9 +96,9 @@ header a:hover
 
 .main
 {
-background-color: #f2e775;
+background-color: #060000;
 
-color: #0a2e71;
+color:  #ffffff;
 margin-left:650px;
 
 
@@ -111,49 +110,6 @@ padding-top:10px;
 padding-right:10px;
 padding-left:10px;
 
-}
-.h2-sign
-{
-padding-left: 175px;
-font-size:40px;
-}
-h3
-{
-
-}
-.h3-name
-{
-padding-left:140px;
-font-size:30px;
-}
-.h3-password
-{
-padding-left:145px;
-font-size:30px;
-}
-.first-input
-{
-width:98.5%;
-}
-input
-{
-width:98.5%;
-height:35px;
-font-size:25px;
-}
-.submit1
-{
-width:100%;
-color:red;
-
-
-	
-
-}
-.h2-sign
-{
-padding-left: 175px;
-font-size:40px;
 }
 .h3-login
 {
@@ -169,12 +125,24 @@ font-size:30px;
 {
 padding-left: 175px;
 font-size:40px;
+color: #fc002a;
+
 }
+input
+{
+width:98.5%;
+height:35px;
+font-size:25px;
+}	
+
+</style>	
 
 
-</style>
+
+
 </head>
 <body>
+
 <header>
 
 <div class="container">
@@ -201,27 +169,7 @@ font-size:40px;
 
 
 
-
-
-
 <div class="main">
-
-<form th:action="@{/addAlien}" >
-<h2 class="h2-sign">Sign Up </h2>
-
-
-<h3 class="h3-name">Enter Username</h3><input class="first-input" type="text"  name= aname><br>
-
-
-<h3 class="h3-password">Enter Password</h3><input type="password"  name=password><br>
-
-<input class="submit1"type="submit" value="Submit"><br>
-
-
-
-
-</form>
-
 <form th:action="@{/login}" method="post">
 <h2 class="h2-login"> Log In</h2>
 
@@ -235,7 +183,6 @@ font-size:40px;
 
 
 </div>
-
 
 
 
